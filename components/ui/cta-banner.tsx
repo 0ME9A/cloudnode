@@ -23,7 +23,7 @@ export default function CtaBanner({ header, className, children }: TProps) {
           <div className="absolute inset-0 pointer-events-none size-full bg-primary/10">
             <LightRays
               raysOrigin="top-center"
-              raysColor="#20F5EB"
+              raysColor="#3466FF"
               raysSpeed={0.001}
               rayLength={1}
               followMouse={true}

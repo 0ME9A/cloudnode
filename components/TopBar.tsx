@@ -11,11 +11,13 @@ export default function TopBar() {
         {/* Left — contact info */}
         <div className="flex items-center gap-4">
           <a
-            href="tel:+918058050040"
+            href={`tel:${companyInfo.phone.primary.number}`}
             className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
           >
             <Phone className="size-3 shrink-0" />
-            <span className="hidden sm:inline">+91 - 805-805-0040</span>
+            <span className="hidden sm:inline">
+              +91 - {companyInfo.phone.primary.number}
+            </span>
           </a>
           <span className="text-primary-foreground/40 hidden sm:inline">|</span>
           <a

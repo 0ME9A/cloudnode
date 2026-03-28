@@ -23,14 +23,14 @@ export default function AboutHero() {
           title={
             <>
               Get in Touch with{" "}
-              <span className="text-primary drop-shadow-[0_0_24px_#20F5EB88]">
+              <span className="text-primary drop-shadow-[0_0_24px_#3466FF88]">
                 Us
               </span>
             </>
           }
           desc={
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Send us an email or fill out the form below and we'll get back to
+              Send us an email or fill out the form below and we&apos;ll get back to
               you as soon as we can.
             </p>
           }

@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/container";
-import { PageHeader, PageHeaderV2 } from "@/components/ui/header";
+import { PageHeader } from "@/components/ui/header";
 import { ContactCard, Section, Toc } from "@/components/ui/legal";
 import { Separator } from "@/components/ui/separator";
 

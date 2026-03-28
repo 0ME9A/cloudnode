@@ -91,7 +91,7 @@ export default function PricingCard({ plan }: TProps) {
             variant={plan.popular ? "default" : "outline"}
             className={`w-full gap-1.5 ${
               plan.popular
-                ? "shadow-[0_0_20px_#20F5EB33] hover:shadow-[0_0_32px_#20F5EB55] transition-all duration-300"
+                ? "shadow-[0_0_20px_#3466FF33] hover:shadow-[0_0_32px_#3466FF55] transition-all duration-300"
                 : "border-primary/30 hover:border-primary/60"
             }`}
             asChild
@@ -113,7 +113,7 @@ export function PricingCardMini({ plan }: TProps) {
       className={`group flex items-center justify-between rounded-xl border px-5 py-4 transition-all duration-300 backdrop-blur-sm
                   ${
                     plan.popular
-                      ? "border-primary/60 bg-primary/10 hover:bg-primary/15 shadow-[0_0_20px_#20F5EB22]"
+                      ? "border-primary/60 bg-primary/10 hover:bg-primary/15 shadow-[0_0_20px_#3466FF22]"
                       : "border-border/60 bg-background/30 hover:border-primary/40 hover:bg-primary/5"
                   }`}
     >

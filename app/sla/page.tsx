@@ -48,7 +48,7 @@ export default function page() {
           <div className="flex-1 w-full space-y-12 leading-relaxed [&_p]:opacity-80 [&_ul]:ml-4">
             <Section id="introduction" title="Introduction">
               <p>
-                This Service Level Agreement ("SLA") applies to all CloudNode RDP
+                This Service Level Agreement (&quot;SLA&quot;) applies to all CloudNode RDP
                 clients and establishes our commitment to providing a
                 continuous, reliable network and hardware environment. CloudNode RDP
                 focuses on offering premium performance with maximal
@@ -70,9 +70,9 @@ export default function page() {
               </p>
               <br />
               <p>
-                "Network Uptime" refers to the availability of the core routing
+                &quot;Network Uptime&quot; refers to the availability of the core routing
                 and switching infrastructure. The network is considered
-                unavailable if there is a 100% packet loss from CloudNode RDP's
+                unavailable if there is a 100% packet loss from CloudNode RDP&apos;s
                 upstream providers to our core routers.
               </p>
             </Section>
@@ -133,16 +133,16 @@ export default function page() {
                 </li>
                 <li>
                   DDoS (Distributed Denial of Service) attacks directed at the
-                  customer's server unless protected by a specific CloudNode RDP DDoS
+                  customer&apos;s server unless protected by a specific CloudNode RDP DDoS
                   mitigation package.
                 </li>
                 <li>
-                  Issues related to the customer's local ISP, local network
+                  Issues related to the customer&apos;s local ISP, local network
                   routing, or firewall blocks preventing access.
                 </li>
                 <li>
                   Force Majeure events, including natural disasters, acts of
-                  war, or widespread internet outages outside CloudNode RDP's
+                  war, or widespread internet outages outside CloudNode RDP&apos;s
                   infrastructure.
                 </li>
               </ul>

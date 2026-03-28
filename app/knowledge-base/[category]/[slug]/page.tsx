@@ -32,7 +32,7 @@ export async function generateMetadata({
     keywords: [
       article.title,
       article.category,
-      "NeedRDP Tutorial",
+      "CloudNode RDP Tutorial",
       "Windows Server Guide",
     ],
     openGraph: {

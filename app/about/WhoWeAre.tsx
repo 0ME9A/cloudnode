@@ -41,7 +41,7 @@ export default function WhoWeAre() {
             title={
               <>
                 Powering Remote Work <br />
-                <span className="text-primary drop-shadow-[0_0_20px_#20F5EB66]">
+                <span className="text-primary drop-shadow-[0_0_20px_#3466FF66]">
                   Globally
                 </span>
               </>

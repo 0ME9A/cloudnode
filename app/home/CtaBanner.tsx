@@ -97,7 +97,7 @@ export default function CtaBanner() {
         <div className="space-y-7">
           <h2
             ref={headingRef}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.2)] max-w-2xl"
+            className="text-3xl sm:text-4xl lg:text-5xl leading-tight font-bold drop-shadow-[0_2px_12px_rgba(0,0,0,0.2)] max-w-2xl"
           >
             Buy a Full Admin Access RDP server with{" "}
             <span>powerful support.</span>

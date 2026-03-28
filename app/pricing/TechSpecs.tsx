@@ -16,7 +16,7 @@ export default function TechSpecs() {
           title={
             <>
               Everything You Need, <br />
-              <span className="text-primary drop-shadow-[0_0_20px_#20F5EB44]">
+              <span className="text-primary drop-shadow-[0_0_20px_#3466FF44]">
                 Included Standard.
               </span>
             </>

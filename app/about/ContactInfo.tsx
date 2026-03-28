@@ -48,7 +48,7 @@ export default function ContactInfo() {
               title={
                 <>
                   We&apos;re Here to{" "}
-                  <span className="text-primary drop-shadow-[0_0_20px_#20F5EB66]">
+                  <span className="text-primary drop-shadow-[0_0_20px_#3466FF66]">
                     Help You
                   </span>
                 </>

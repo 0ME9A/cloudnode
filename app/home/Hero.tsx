@@ -42,7 +42,9 @@ export default function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Check if the preloader has run previously in this session
-      const hasPreloaderRun = sessionStorage.getItem("CloudNode RDP_preloader_done");
+      const hasPreloaderRun = sessionStorage.getItem(
+        "CloudNode RDP_preloader_done",
+      );
       // Add a delay to account for the Preloader animation only if it's the first visit
       const animationDelay = hasPreloaderRun ? 0 : 2.4;
 
@@ -116,7 +118,7 @@ export default function Hero() {
       <div className="absolute inset-0 pointer-events-none">
         <LightRays
           raysOrigin="top-center"
-          raysColor="#20F5EB"
+          raysColor="#3466FF"
           raysSpeed={1}
           lightSpread={0.6}
           rayLength={3}
@@ -140,7 +142,7 @@ export default function Hero() {
                 <ShinyText
                   text="New10 — 10% off all plans"
                   color="#000"
-                  shineColor="#20F5EB"
+                  shineColor="#3466FF"
                   speed={3}
                   className="text-sm font-semibold tracking-wide"
                 />
@@ -168,7 +170,7 @@ export default function Hero() {
                       "USA",
                       "Singapore",
                     ]}
-                    className="text-primary drop-shadow-[0_0_24px_#20F5EB88]"
+                    className="text-primary drop-shadow-[0_0_24px_#3466FF88]"
                     as="span"
                     typingSpeed={65}
                     deletingSpeed={35}

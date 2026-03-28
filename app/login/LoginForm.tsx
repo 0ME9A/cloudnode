@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { loginSchema } from "@/schema/auth";
 import { useForm } from "react-hook-form";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import {
   Form,
   FormControl,
@@ -47,38 +47,47 @@ export default function LoginForm() {
     formState: { isSubmitting },
   } = form;
 
-  async function onSubmit(values: LoginFormValues) {
-    setStatus("loading");
-    setServerMessage(null);
+  const onSubmit = useCallback(
+    async (values: LoginFormValues) => {
+      setStatus("loading");
+      setServerMessage(null);
 
-    if (!values.captcha) {
-      form.setError("captcha", {
-        type: "manual",
-        message: "Please complete the reCAPTCHA.",
-      });
-      setStatus("idle");
-      return;
-    }
+      if (!values.captcha) {
+        form.setError("captcha", {
+          type: "manual",
+          message: "Please complete the reCAPTCHA.",
+        });
+        setStatus("idle");
+        return;
+      }
 
-    try {
-      // TEMP: simulate API call
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.2 ? resolve("ok") : reject();
-        }, 1500);
-      });
+      try {
+        // TEMP: simulate API call
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (Math.random() > 0.2) {
+              resolve("ok");
+            } else {
+              reject();
+            }
+          }, 1500);
+        });
 
-      setStatus("success");
-      setServerMessage("Login successful! Redirecting...");
-      recaptchaRef.current?.reset();
-      //   console.log("Login Payload:", values);
-      // NOTE: Here you would normally route to the dashboard
-      // router.push("/dashboard")
-    } catch {
-      setStatus("error");
-      setServerMessage("Invalid email or password. Please try again.");
-    }
-  }
+        setStatus("success");
+        setServerMessage("Login successful! Redirecting...");
+        recaptchaRef.current?.reset();
+      } catch {
+        setStatus("error");
+        setServerMessage("Invalid email or password. Please try again.");
+      }
+    },
+    [form],
+  );
+
+  const onFormSubmit = useMemo(
+    () => handleSubmit(onSubmit),
+    [handleSubmit, onSubmit],
+  );
 
   return (
     <div className="pt-32 pb-24 flex items-center justify-center px-4">
@@ -99,7 +108,7 @@ export default function LoginForm() {
         {/* Card Container */}
         <div>
           <Form {...form}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={onFormSubmit} className="space-y-6">
               <FormField
                 control={form.control}
                 name="email"
@@ -234,7 +243,7 @@ export default function LoginForm() {
 
           <div className="mt-8 text-center text-sm text-muted-foreground">
             <Separator className="mb-6 opacity-50" />
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               href="/register"
               className="font-semibold text-primary hover:text-primary/80 transition-colors uppercase tracking-wider"

@@ -116,8 +116,8 @@ export default function page() {
                 </li>
                 <li>
                   Attempting to interfere with service to any user, host, or
-                  network, including, via means of overloading, "flooding,"
-                  "mailbombing," or "crashing."
+                  network, including, via means of overloading, &quot;flooding,&quot;
+                  &quot;mailbombing,&quot; or &quot;crashing.&quot;
                 </li>
                 <li>
                   Forging any TCP/IP packet header or any part of the header
@@ -177,7 +177,7 @@ export default function page() {
                 of this Policy. When CloudNode RDP becomes aware of possible
                 violations, we may initiate an investigation that could include
                 gathering information from the User and the complaining party,
-                and reviewing materials on CloudNode RDP's servers and networks.
+                and reviewing materials on CloudNode RDP&apos;s servers and networks.
               </p>
               <br />
               <p>

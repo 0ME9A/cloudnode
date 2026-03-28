@@ -1,6 +1,6 @@
 "use client";
 
-import type { ICheckoutState } from "@/type";
+import type { ICheckoutState, TPaymentMethod } from "@/type";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CreditCard, Wallet, Lock, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -71,7 +71,7 @@ export default function PaymentStep({
 
           <RadioGroup
             value={state.paymentMethod || ""}
-            onValueChange={(val: any) => updateState({ paymentMethod: val })}
+            onValueChange={(val: string) => updateState({ paymentMethod: val as TPaymentMethod })}
             className="grid sm:grid-cols-2 gap-4"
           >
             {[

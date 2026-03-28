@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -56,49 +56,67 @@ export default function ResetPasswordForm() {
     // We parse the ?token=XYZ param. If missing or "expired", we reject.
     // ----------------------------------------------------
     if (!token) {
-      setIsTokenValid(false);
-      setServerMessage(
-        "Missing security token. Please request a new password reset link.",
-      );
+      if (isTokenValid !== false) {
+        setIsTokenValid(false);
+        setServerMessage(
+          "Missing security token. Please request a new password reset link.",
+        );
+      }
       return;
     }
 
     if (token === "expired" || token === "invalid") {
-      setIsTokenValid(false);
-      setServerMessage(
-        "This password reset link has expired or is invalid. Please request a new one.",
-      );
+      if (isTokenValid !== false) {
+        setIsTokenValid(false);
+        setServerMessage(
+          "This password reset link has expired or is invalid. Please request a new one.",
+        );
+      }
       return;
     }
 
     // Otherwise, simulate checking token from backend
-    setIsTokenValid(true);
-  }, [token]);
-
-  async function onSubmit(values: ResetPasswordValues) {
-    setStatus("loading");
-    setServerMessage(null);
-
-    try {
-      // TEMP: simulate API call changing the password
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.05 ? resolve("ok") : reject();
-        }, 1500);
-      });
-
-      setStatus("success");
-      setServerMessage(
-        "Your password has been successfully reset! You can now log in.",
-      );
-      form.reset();
-    } catch {
-      setStatus("error");
-      setServerMessage(
-        "Failed to reset password. The server encountered an error.",
-      );
+    if (isTokenValid !== true) {
+      setIsTokenValid(true);
     }
-  }
+  }, [token, isTokenValid]);
+
+  const onSubmit = useCallback(
+    async (values: ResetPasswordValues) => {
+      setStatus("loading");
+      setServerMessage(null);
+
+      try {
+        // TEMP: simulate API call changing the password
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (Math.random() > 0.05) {
+              resolve("ok");
+            } else {
+              reject();
+            }
+          }, 1500);
+        });
+
+        setStatus("success");
+        setServerMessage(
+          "Your password has been successfully reset! You can now log in.",
+        );
+        form.reset();
+      } catch {
+        setStatus("error");
+        setServerMessage(
+          "Failed to reset password. The server encountered an error.",
+        );
+      }
+    },
+    [form],
+  );
+
+  const onFormSubmit = useMemo(
+    () => handleSubmit(onSubmit),
+    [handleSubmit, onSubmit],
+  );
 
   // --- INVALID TOKEN RENDER BLOCK ---
   if (isTokenValid === false) {
@@ -143,7 +161,7 @@ export default function ResetPasswordForm() {
         {/* Card Container */}
         <div>
           <Form {...form}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={onFormSubmit} className="space-y-6">
               <FormField
                 control={form.control}
                 name="password"

@@ -5,16 +5,14 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import {
-  Settings,
   Check,
   ChevronRight,
   Computer,
-  Receipt,
   Edit2,
   CalendarDays,
   MapPin,
 } from "lucide-react";
-import type { ICheckoutState } from "@/type";
+import type { ICheckoutState, TBillingCycle, TOperatingSystem } from "@/type";
 import { serverLocations } from "@/data/locations";
 import { OS_OPTIONS } from "../types";
 import { cn } from "@/lib/utils";
@@ -90,7 +88,7 @@ export default function ConfigureStep({
 
           <RadioGroup
             value={state.billingCycle}
-            onValueChange={(val: any) => updateState({ billingCycle: val })}
+            onValueChange={(val: string) => updateState({ billingCycle: val as TBillingCycle })}
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
           >
             {[
@@ -224,7 +222,7 @@ export default function ConfigureStep({
 
           <RadioGroup
             value={state.os}
-            onValueChange={(val: any) => updateState({ os: val })}
+            onValueChange={(val: string) => updateState({ os: val as TOperatingSystem })}
             className="grid sm:grid-cols-2 gap-4"
           >
             {OS_OPTIONS.map((os) => (

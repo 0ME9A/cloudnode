@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useForm } from "react-hook-form";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import {
   Form,
   FormControl,
@@ -44,38 +44,52 @@ export default function ForgotPasswordForm() {
     formState: { isSubmitting },
   } = form;
 
-  async function onSubmit(values: ForgotPasswordValues) {
-    setStatus("loading");
-    setServerMessage(null);
+  const onSubmit = useCallback(
+    async (values: ForgotPasswordValues) => {
+      setStatus("loading");
+      setServerMessage(null);
 
-    if (!values.captcha) {
-      form.setError("captcha", {
-        type: "manual",
-        message: "Please complete the reCAPTCHA.",
-      });
-      setStatus("idle");
-      return;
-    }
+      if (!values.captcha) {
+        form.setError("captcha", {
+          type: "manual",
+          message: "Please complete the reCAPTCHA.",
+        });
+        setStatus("idle");
+        return;
+      }
 
-    try {
-      // TEMP: simulate API call sending a recovery email
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.1 ? resolve("ok") : reject();
-        }, 1500);
-      });
+      try {
+        // TEMP: simulate API call sending a recovery email
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (Math.random() > 0.1) {
+              resolve("ok");
+            } else {
+              reject();
+            }
+          }, 1500);
+        });
 
-      setStatus("success");
-      setServerMessage(
-        "If an account is associated with that email, a password reset link has been sent. Please check your inbox (and spam folder).",
-      );
-      form.reset();
-      recaptchaRef.current?.reset();
-    } catch {
-      setStatus("error");
-      setServerMessage("An unexpected error occurred. Please try again later.");
-    }
-  }
+        setStatus("success");
+        setServerMessage(
+          "If an account is associated with that email, a password reset link has been sent. Please check your inbox (and spam folder).",
+        );
+        form.reset();
+        recaptchaRef.current?.reset();
+      } catch {
+        setStatus("error");
+        setServerMessage(
+          "An unexpected error occurred. Please try again later.",
+        );
+      }
+    },
+    [form],
+  );
+
+  const onFormSubmit = useMemo(
+    () => handleSubmit(onSubmit),
+    [handleSubmit, onSubmit],
+  );
 
   return (
     <div className="pt-32 pb-24 flex items-center justify-center px-4">
@@ -96,7 +110,7 @@ export default function ForgotPasswordForm() {
 
         <div>
           <Form {...form}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={onFormSubmit} className="space-y-6">
               <FormField
                 control={form.control}
                 name="email"

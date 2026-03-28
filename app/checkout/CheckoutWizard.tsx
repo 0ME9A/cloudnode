@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
 import { useSearchParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { useState, Suspense } from "react";
+import { useState } from "react";
 import { rdpPlans } from "@/data/plans";
 import ConfigureStep from "./steps/ConfigureStep";
 import AccountStep from "./steps/AccountStep";
@@ -67,8 +67,7 @@ export default function CheckoutWizard() {
             Deployment Successful!
           </h1>
           <p className="text-muted-foreground text-lg mb-8">
-            Your shiny new <strong>{selectedPlanData.name}</strong> server in{" "}
-            <strong>{checkoutState.location}</strong> is spinning up. We've sent
+            <strong>{checkoutState.location}</strong> is spinning up. We&apos;ve sent
             your credentials to your email inbox.
           </p>
 

@@ -9,7 +9,7 @@ export default function NotFound() {
       <div className="absolute inset-0 pointer-events-none">
         <LightRays
           raysOrigin="top-center"
-          raysColor="#20F5EB"
+          raysColor="#3466FF"
           raysSpeed={1}
           lightSpread={0.6}
           rayLength={3}
@@ -31,7 +31,7 @@ export default function NotFound() {
             Error 404
           </h1>
           <h2 className="text-xl md:text-2xl font-light mb-8 text-muted-foreground">
-            Sorry, We can't find the page that you searched!
+            Sorry, We can&apos;t find the page that you searched!
           </h2>
 
           <div className="flex justify-center">

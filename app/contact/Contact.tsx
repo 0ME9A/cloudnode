@@ -26,7 +26,7 @@ export default function Contact() {
           </a>
 
           <p className="text-sm opacity-75 mt-2">
-            24x7 Email Support. Drop us an email and we'll get back to you as
+            24x7 Email Support. Drop us an email and we&apos;ll get back to you as
             soon as possible.
           </p>
           <span className="absolute -bottom-6 -right-6 opacity-5 scale-150">

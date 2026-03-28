@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.BASE_URL || "https://cloudnode.com"),
+  metadataBase: new URL(process.env.BASE_URL || "https://cloudnode.vercel.app"),
   title: {
     default: "CloudNode RDP | Premium Windows RDP Servers",
     template: "%s | CloudNode RDP",

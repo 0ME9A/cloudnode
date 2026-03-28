@@ -10,7 +10,7 @@ import { registerSchema } from "@/schema/auth";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useForm } from "react-hook-form";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import {
   Form,
   FormControl,
@@ -47,40 +47,50 @@ export default function RegisterForm() {
   const {
     handleSubmit,
     formState: { isSubmitting },
-    reset,
   } = form;
 
-  async function onSubmit(values: RegisterFormValues) {
-    setStatus("loading");
-    setServerMessage(null);
+  const onSubmit = useCallback(
+    async (values: RegisterFormValues) => {
+      setStatus("loading");
+      setServerMessage(null);
 
-    if (!values.captcha) {
-      form.setError("captcha", {
-        type: "manual",
-        message: "Please complete the reCAPTCHA.",
-      });
-      setStatus("idle");
-      return;
-    }
+      if (!values.captcha) {
+        form.setError("captcha", {
+          type: "manual",
+          message: "Please complete the reCAPTCHA.",
+        });
+        setStatus("idle");
+        return;
+      }
 
-    try {
-      // TEMP: simulate API call
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.2 ? resolve("ok") : reject();
-        }, 1500);
-      });
+      try {
+        // TEMP: simulate API call
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (Math.random() > 0.2) {
+              resolve("ok");
+            } else {
+              reject();
+            }
+          }, 1500);
+        });
 
-      setStatus("success");
-      setServerMessage("Account created successfully! You can now log in.");
-      //   console.log("Registration Payload:", values);
-      form.reset();
-      recaptchaRef.current?.reset();
-    } catch {
-      setStatus("error");
-      setServerMessage("Failed to create account. Please try again later.");
-    }
-  }
+        setStatus("success");
+        setServerMessage("Account created successfully! You can now log in.");
+        form.reset();
+        recaptchaRef.current?.reset();
+      } catch {
+        setStatus("error");
+        setServerMessage("Failed to create account. Please try again later.");
+      }
+    },
+    [form],
+  );
+
+  const onFormSubmit = useMemo(
+    () => handleSubmit(onSubmit),
+    [handleSubmit, onSubmit],
+  );
 
   return (
     <div className="py-8 md:pt-32 md:pb-24 flex items-center justify-center px-4">
@@ -101,7 +111,7 @@ export default function RegisterForm() {
         {/* Card Container */}
         <div>
           <Form {...form}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={onFormSubmit} className="space-y-6">
               <FormField
                 control={form.control}
                 name="name"

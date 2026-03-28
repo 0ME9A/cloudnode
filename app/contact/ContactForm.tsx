@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Separator } from "@/components/ui/separator";
 import { contactFormSchema } from "@/schema/contact";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -46,37 +46,49 @@ export default function ContactForm() {
     reset,
   } = form;
 
-  async function onSubmit(values: ContactFormValues) {
-    setStatus("idle");
-    setServerMessage(null);
+  const onSubmit = useCallback(
+    async (values: ContactFormValues) => {
+      setStatus("idle");
+      setServerMessage(null);
 
-    if (!values.captcha) {
-      form.setError("captcha", {
-        type: "manual",
-        message: "Please complete the reCAPTCHA.",
-      });
-      return;
-    }
+      if (!values.captcha) {
+        form.setError("captcha", {
+          type: "manual",
+          message: "Please complete the reCAPTCHA.",
+        });
+        return;
+      }
 
-    try {
-      // TEMP: simulate API call
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.3 ? resolve("ok") : reject();
-        }, 1500);
-      });
+      try {
+        // TEMP: simulate API call
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (Math.random() > 0.3) {
+              resolve("ok");
+            } else {
+              reject();
+            }
+          }, 1500);
+        });
 
-      setStatus("success");
-      setServerMessage(
-        "Thank you for reaching out. We’ll get back to you shortly.",
-      );
-      reset();
-      recaptchaRef.current?.reset();
-    } catch {
-      setStatus("error");
-      setServerMessage("Something went wrong. Please try again later.");
-    }
-  }
+        setStatus("success");
+        setServerMessage(
+          "Thank you for reaching out. We&apos;d be Glad to Hear from You.",
+        );
+        reset();
+        recaptchaRef.current?.reset();
+      } catch {
+        setStatus("error");
+        setServerMessage("Something went wrong. Please try again later.");
+      }
+    },
+    [form, reset],
+  );
+
+  const onFormSubmit = useMemo(
+    () => handleSubmit(onSubmit),
+    [handleSubmit, onSubmit],
+  );
 
   useEffect(() => {
     if (status === "success") {
@@ -94,7 +106,7 @@ export default function ContactForm() {
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-semibold">Contact Us</h2>
         <p className="text-sm text-muted-foreground">
-          We'd be Glad to Hear from You.
+          We&apos;d be Glad to Hear from You.
         </p>
       </div>
       <Separator />
@@ -114,7 +126,7 @@ export default function ContactForm() {
       </div>
 
       <Form {...form}>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={onFormSubmit} className="space-y-6">
           <FormField
             control={form.control}
             name="name"

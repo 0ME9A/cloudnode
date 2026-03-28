@@ -31,7 +31,6 @@ export default function NewsletterSubscribeForm() {
     handleSubmit,
     formState: { isSubmitting },
     reset,
-    setError,
   } = form;
 
   async function onSubmit(values: NewsletterFormValues) {
@@ -42,15 +41,18 @@ export default function NewsletterSubscribeForm() {
       // Simulate API call with 50% chance of failure to test Error UI
       await new Promise((resolve, reject) => {
         setTimeout(() => {
-          const isSuccess = Math.random() > 0.5;
-          isSuccess ? resolve("ok") : reject(new Error("Server error"));
+          if (Math.random() > 0.5) {
+            resolve("ok");
+          } else {
+            reject(new Error("Server error"));
+          }
         }, 1500);
       });
 
       setStatus("success");
       setServerMessage("You have successfully subscribed to our newsletter.");
       reset();
-    } catch (error) {
+    } catch {
       setStatus("error");
       setServerMessage("Something went wrong. Please try again later.");
     }

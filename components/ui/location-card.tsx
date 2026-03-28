@@ -25,7 +25,7 @@ export default function LocationCard({
     <div
       className={cn(
         "group relative flex flex-col gap-3 rounded-2xl border border-border/50 bg-background/40 backdrop-blur-sm p-5",
-        "hover:border-primary/40 hover:bg-primary/5 hover:shadow-[0_0_24px_#20F5EB0D]",
+        "hover:border-primary/40 hover:bg-primary/5 hover:shadow-[0_0_24px_#3466FF0D]",
         "transition-all duration-300",
         className,
       )}
@@ -76,7 +76,7 @@ type TPropsV2 = {
 };
 export function LocationCardV2({ location, className }: TPropsV2) {
   return (
-    <Card className="hover:scale-[1.03] hover:border-primary/40 hover:shadow-[0_0_20px_#20F5EB0D] transition-all duration-300">
+    <Card className="hover:scale-[1.03] hover:border-primary/40 hover:shadow-[0_0_20px_#3466FF0D] transition-all duration-300">
       <CardHeader className="pb-2">
         {/* Country code badge instead of emoji flag */}
         <span

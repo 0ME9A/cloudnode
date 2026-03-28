@@ -6,17 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/header";
 import { serverLocations } from "@/data/locations";
-import { Globe, Wifi } from "lucide-react";
+import { Globe } from "lucide-react";
 import { Cobe } from "@/components/ui/cobe-globe";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { LocationCardV2 } from "@/components/ui/location-card";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -120,7 +111,7 @@ export default function Locations() {
               title={
                 <>
                   Your Data,{" "}
-                  <span className="text-primary drop-shadow-[0_0_20px_#20F5EB66]">
+                  <span className="text-primary drop-shadow-[0_0_20px_#3466FF66]">
                     Closer to You
                   </span>
                 </>
@@ -138,8 +129,8 @@ export default function Locations() {
                   lat: l.coordinates[0],
                   long: l.coordinates[1],
                 }))}
-                markerColor="#20F5EB"
-                glowColor="#20F5EB"
+                markerColor="#3466FF"
+                glowColor="#3466FF"
                 dark={1}
               />
             </div>
@@ -180,8 +171,8 @@ export default function Locations() {
                 long: l.coordinates[1],
                 emoji: "📍",
               }))}
-              markerColor="#20F5EB"
-              glowColor="#20F5EB"
+              markerColor="#3466FF"
+              glowColor="#3466FF"
               dark={1}
             />
           </div>

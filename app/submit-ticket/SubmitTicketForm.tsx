@@ -7,7 +7,7 @@ import { ticketFormSchema } from "@/schema/ticket";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import { z } from "zod";
 import {
   Form,
@@ -52,45 +52,49 @@ export default function SubmitTicketForm() {
     reset,
   } = form;
 
-  async function onSubmit(values: TicketFormValues) {
-    setStatus("idle");
-    setServerMessage(null);
+  const onSubmit = useCallback(
+    async (values: TicketFormValues) => {
+      setStatus("idle");
+      setServerMessage(null);
 
-    if (!values.captcha) {
-      form.setError("captcha", {
-        type: "manual",
-        message: "Please complete the reCAPTCHA.",
-      });
-      return;
-    }
+      if (!values.captcha) {
+        form.setError("captcha", {
+          type: "manual",
+          message: "Please complete the reCAPTCHA.",
+        });
+        return;
+      }
 
-    try {
-      // TEMP: simulate API call
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.1 ? resolve("ok") : reject();
-        }, 1500);
-      });
-      console.log(values);
-      setStatus("success");
-      setServerMessage(
-        "Ticket submitted successfully. We will typically reply within 24 hours.",
-      );
-      reset();
-      recaptchaRef.current?.reset();
-    } catch {
-      setStatus("error");
-      setServerMessage("Something went wrong. Please try again later.");
-    }
-  }
+      try {
+        // TEMP: simulate API call
+        await new Promise((resolve, reject) => {
+          setTimeout(() => {
+            Math.random() > 0.1 ? resolve("ok") : reject();
+          }, 1500);
+        });
+        setStatus("success");
+        setServerMessage(
+          "Ticket submitted successfully. We will typically reply within 24 hours.",
+        );
+        reset();
+        recaptchaRef.current?.reset();
+      } catch {
+        setStatus("error");
+        setServerMessage("Something went wrong. Please try again later.");
+      }
+    },
+    [form, reset],
+  );
+
+  const onFormSubmit = useMemo(
+    () => handleSubmit(onSubmit),
+    [handleSubmit, onSubmit],
+  );
 
   return (
     <div className="p-8 rounded-xl space-y-8 bg-primary/5 border border-primary/10">
       <Form {...form}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="space-y-6 max-w-5xl mx-auto"
-        >
+        <form onSubmit={onFormSubmit} className="space-y-6 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormField
               control={form.control}

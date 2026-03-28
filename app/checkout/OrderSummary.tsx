@@ -59,7 +59,7 @@ export default function OrderSummary({
 
   const annualDiscount =
     state.billingCycle === "annually" ? baseCost * 0.15 : 0; // 15% off annual
-  let subtotal = baseCost + osCost - annualDiscount;
+  const subtotal = baseCost + osCost - annualDiscount;
 
   const locData = serverLocations.find((l) => l.city === state.location);
 

@@ -33,7 +33,7 @@ export default function BlogCard({ blog, thumbnailSpin, className }: TProps) {
           "group relative overflow-hidden rounded-lg aspect-square lg:aspect-auto",
           "transition-all duration-300",
           "shadow-2xl shadow-primary/10 hover:shadow-primary/20",
-          "border-border/50 hover:border-primary/30 hover:shadow-[0_0_24px_#20F5EB0D]",
+          "border-border/50 hover:border-primary/30 hover:shadow-[0_0_24px_#3466FF0D]",
           className,
         )}
       >

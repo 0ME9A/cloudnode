@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Zap, Shield, Wifi, Clock } from "lucide-react";
+import { Zap, Shield, Wifi, Clock } from "lucide-react";
 import { discountAnnouncement } from "@/data/announcement";
 import { SectionHeader } from "@/components/ui/header";
 import { Container } from "@/components/ui/container";
@@ -105,7 +105,7 @@ export default function Pricing() {
             title={
               <>
                 Simple, Transparent{" "}
-                <span className="text-primary drop-shadow-[0_0_20px_#20F5EB66]">
+                <span className="text-primary drop-shadow-[0_0_20px_#3466FF66]">
                   Pricing
                 </span>
               </>
@@ -146,7 +146,7 @@ export default function Pricing() {
           <div className="flex flex-wrap justify-center gap-x-10 gap-y-3">
             {ALL_PLAN_INCLUDES.map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-2 text-sm">
-                <CheckCircle2 className="size-4 text-primary shrink-0" />
+                <Icon className="size-4 text-primary shrink-0" />
                 <span className="text-muted-foreground">{text}</span>
               </div>
             ))}

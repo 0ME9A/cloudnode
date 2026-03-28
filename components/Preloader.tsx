@@ -154,11 +154,8 @@ export function Preloader() {
             ref={textContainerRef}
             className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground"
           >
-            Need
-            <span
-              ref={rdpspanRef}
-              className="text-primary inline-block"
-            >
+            CloudNode
+            <span ref={rdpspanRef} className="text-primary inline-block">
               RDP
             </span>
           </h1>

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 export function ServerIllustration({ isError = false }: { isError?: boolean }) {
-  const primaryColor = isError ? "#ef4444" : "#20F5EB";
+  const primaryColor = isError ? "#ef4444" : "#3466FF";
   // const glowColor = isError
   //   ? "rgba(239, 68, 68, 0.5)"
   //   : "rgba(32, 245, 235, 0.5)";

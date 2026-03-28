@@ -37,7 +37,7 @@ export default function AboutHero() {
           title={
             <>
               Everything You Need to{" "}
-              <span className="text-primary drop-shadow-[0_0_24px_#20F5EB88]">
+              <span className="text-primary drop-shadow-[0_0_24px_#3466FF88]">
                 Know About Us
               </span>
             </>

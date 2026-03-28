@@ -40,7 +40,7 @@ export default function FaqSection({
    * Compute filtered FAQ list
    */
   const filteredFaqs = useMemo(() => {
-    let faqs =
+    const faqs =
       activeCategory === "all"
         ? data.flatMap((section) => section.faqs)
         : (data.find((section) => section.id === activeCategory)?.faqs ?? []);

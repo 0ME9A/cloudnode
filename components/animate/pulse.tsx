@@ -81,7 +81,7 @@ export default function Pulse({
       };
     });
 
-    setLayerConfigs(configs);
+    requestAnimationFrame(() => setLayerConfigs(configs));
   }, [layers, palette, intensity, seed]);
 
   const shapeClass =

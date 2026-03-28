@@ -116,7 +116,7 @@ export default function Features() {
           title={
             <>
               Everything You Need,{" "}
-              <span className="text-primary drop-shadow-[0_0_20px_#20F5EB66]">
+              <span className="text-primary drop-shadow-[0_0_20px_#3466FF66]">
                 Right Out of the Box
               </span>
             </>
@@ -210,7 +210,7 @@ export default function Features() {
             <div className="pt-2">
               <Button
                 size="sm"
-                className="gap-1.5 shadow-[0_0_16px_#20F5EB33] hover:shadow-[0_0_24px_#20F5EB55] transition-all duration-300"
+                className="gap-1.5 shadow-[0_0_16px_#3466FF33] hover:shadow-[0_0_24px_#3466FF55] transition-all duration-300"
                 asChild
               >
                 <Link href={"/pricing"}>

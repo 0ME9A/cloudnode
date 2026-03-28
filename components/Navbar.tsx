@@ -39,8 +39,8 @@ export function Navbar() {
 
   // Close mobile menu on route change
   useEffect(() => {
-    setOpen(false);
-  }, [pathName]);
+    if (open) setOpen(false);
+  }, [pathName, open]);
 
   // Scroll hide / show (SSR-safe)
   useEffect(() => {
@@ -95,9 +95,6 @@ export function Navbar() {
               height={200}
               className="h-5 sm:h-6 md:h-7 w-auto"
             />
-            {/* <span className="text-xl font-extrabold tracking-tight">
-              NEED<span className="text-primary">RDP</span>
-            </span> */}
           </Link>
 
           {/* ── Desktop / Tablet Nav ── */}

@@ -38,7 +38,7 @@ export default function Footer() {
                   alt="CloudNode RDP"
                   width={150}
                   height={150}
-                  className="h-8 w-auto drop-shadow-xl drop-shadow-black dark:drop-shadow-white"
+                  className="h-8 w-auto drop-shadow-xl drop-shadow-black"
                 />
                 <h3 className="text-2xl font-bold text-primary">
                   {/* {companyInfo.name} */}
@@ -196,7 +196,7 @@ export default function Footer() {
         <Container className="py-0! overflow-hidden relative">
           <div className="size-full absolute top-0 left-0 bg-linear-to-b to-accent" />
           <div className="text-[15vw] xl:text-[15rem] text-center text-primary/20 leading-none font-extrabold">
-            CloudNode RDP
+            CloudNode
           </div>
         </Container>
       </footer>

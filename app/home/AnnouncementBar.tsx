@@ -15,7 +15,7 @@ export default function AnnouncementBar() {
   useEffect(() => {
     if (!scrollRef.current || !activeAnnouncement.length) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Create a seamless loop animation moving horizontally to -50%
       const animation = gsap.to(scrollRef.current, {
         xPercent: -50,

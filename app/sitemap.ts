@@ -3,7 +3,7 @@ import { mockBlog } from "@/data/blog";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.BASE_URL || "https://cloudnode.vercel.app";
+  const baseUrl = process.env.BASE_URL || "https://cloudnoderdp.vercel.app";
 
   // The main routes
   const mainRoutes = [
